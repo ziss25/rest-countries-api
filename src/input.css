@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+body {
+  @apply bg-very-light dark:bg-very-dark dark:text-white;
+}
+/* header */
+
+header {
+  @apply flex justify-between items-center px-4 h-14 shadow-sm bg-white lg:px-12 lg:h-12 dark:bg-dark dark:text-very-light;
+}
+.title {
+  @apply font-extrabold text-base;
+}
+.contain-mode {
+  @apply flex items-center cursor-pointer;
+}
+
+/* none outline input */
+.input input:focus {
+  outline: none;
+}
+select:focus {
+  outline: none;
+}
