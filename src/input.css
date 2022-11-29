@@ -11,8 +11,8 @@
 body {
   @apply bg-very-light dark:bg-very-dark dark:text-white;
 }
-/* header */
 
+/* header */
 header {
   @apply flex justify-between items-center px-4 h-14 shadow-sm bg-white lg:px-12 lg:h-12 dark:bg-dark dark:text-very-light;
 }
@@ -27,6 +27,56 @@ header {
 .input input:focus {
   outline: none;
 }
-select:focus {
-  outline: none;
+
+/* main  */
+main {
+  @apply mt-6 px-4 lg:px-12;
+}
+.user-experience {
+  @apply md:flex md:justify-between items-center;
+}
+.contain-input {
+  @apply bg-white flex shadow-sm rounded-md overflow-hidden md:h-10 dark:bg-dark md:w-2/6;
+}
+.search {
+  @apply w-1/6 flex justify-center items-center;
+}
+.dropdown {
+  @apply mt-8 w-1/2 md:w-1/6 text-sm relative md:mt-0;
+}
+.select {
+  @apply font-semibold flex justify-between items-center h-10 bg-white py-2 px-4;
+}
+.options {
+  @apply opacity-0 hidden;
+}
+.options li {
+  @apply px-4 py-2;
+}
+.options li:hover {
+  @apply bg-gray-200 cursor-pointer dark:bg-slate-700;
+}
+.select,
+.options {
+  @apply rounded-md dark:bg-dark;
+}
+/* btn image nya */
+.btn {
+  @apply transition-transform duration-1000;
+}
+
+/* animate dropdown */
+.active-options {
+  @apply opacity-100 block transition-transform duration-1000 absolute right-0 left-0 bg-white mt-2;
+}
+.active-btn {
+  @apply rotate-180 ease-in-out duration-1000;
+}
+
+.countries {
+  @apply gap-y-4 md:m-0 md:w-full md:mt-4;
+}
+
+.country {
+  @apply mb-8 md:m-0 md:w-52;
 }
