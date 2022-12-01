@@ -9,9 +9,12 @@
 }
 
 body {
-  @apply bg-very-light dark:bg-very-dark dark:text-white;
+  @apply bg-very-light dark:bg-very-dark dark:text-white pt-14;
 }
-
+/* active details for body */
+.activeDetails {
+  @apply h-screen overflow-auto;
+}
 /* header */
 header {
   @apply flex justify-between items-center px-4 h-14 shadow-sm bg-white lg:px-12 lg:h-12 dark:bg-dark dark:text-very-light;
@@ -74,7 +77,7 @@ main {
 }
 
 .country {
-  @apply mb-10 bg-white rounded-md overflow-hidden md:w-64 bg-slate-100;
+  @apply mb-10 bg-white rounded-md overflow-hidden md:w-64 bg-white;
 }
 
 .countries {
