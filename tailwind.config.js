@@ -9,7 +9,7 @@ module.exports = {
         'very-dark': 'hsl(207, 26%, 17%)',
         'very-dark-blue': 'hsl(200, 15%, 8%)',
         'dark-gray': 'hsl(0, 0%, 52%)',
-        'very-light': 'hsl(0, 0%, 90%)',
+        'very-light': 'hsl(0, 0%, 96%)',
         white: 'hsl(0, 0%, 100%)',
       },
     },
