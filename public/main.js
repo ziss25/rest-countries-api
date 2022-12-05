@@ -26,7 +26,6 @@ const titleOutput = document.querySelector('.title-output');
 const btnAnimate = document.getElementById('btn-animate');
 const regions = document.querySelectorAll('li');
 const options = document.querySelector('.options');
-console.log(titleOutput);
 // jika dropdown di click
 btnAnimate.addEventListener('click', closeOpenDropdown);
 regions.forEach((region) => {
@@ -52,6 +51,7 @@ const input = document.querySelector('input');
 const search = document.querySelector('.search');
 // recomendasi data berdasarkan inputan per character
 input.addEventListener('keyup', () => {
+  console.log(input.value);
   getByFilter('name', input.value);
 });
 // ini click search
@@ -94,14 +94,23 @@ async function renderStart() {
 async function getByFilter(filter, input, isDetail = false) {
   try {
     const result = await getDataContries(`${filter}/${input}`);
+    console.log(result.length);
     if (isDetail === false) {
+      if (result.length == 1) {
+        const BODY = document.querySelector('body');
+        BODY.classList.add('h-screen');
+      } else {
+        const BODY = document.querySelector('body');
+        BODY.classList.remove('h-screen');
+      }
       render(result, outputCountries);
     } else {
       detailsComponents(result);
     }
   } catch (err) {
-    // error by user
-    outputCountries.innerHTML = `<h1 class = " w-full text-4xl text-center mt-8">country not found</h1>`;
+    notFoundComponent();
+    const BODY = document.querySelector('body');
+    BODY.classList.add('h-screen');
   }
 }
 // fungsi render keluar
@@ -113,7 +122,7 @@ function render(params, outputCountries) {
     const capital = contry.capital;
     const flags = contry.flags.png;
     return `
-    <div class="country bg-white dark:bg-dark " onclick= "clickFromRegion('${name}')">
+    <div class="country bg-white dark:bg-dark cursor-pointer " onclick= "clickFromRegion('${name}')">
     <div class="country-images">
       <img class="w-full" src="${flags}" alt="indonesian" />
     </div>
@@ -130,7 +139,6 @@ function render(params, outputCountries) {
   </div>
     `;
   });
-  // console.log(countries);
   outputCountries.innerHTML = countries.join('');
 }
 // random
@@ -160,7 +168,7 @@ function detailsComponents(params) {
   console.log(params);
   main.innerHTML = `
   <section class="details px-4 pt-8 pb-2 h-full">
-  <div class="btn-details w-20 flex justify-evenly items-center bg-white rounded-sm dark:bg-dark text-sm h-6 shadow-md md:w-24 md:justify-center cursor-pointer">
+  <div class="btn-details w-20 flex justify-evenly items-center bg-white rounded-sm dark:bg-dark text-sm h-6 shadow-md md:w-24 md:justify-center cursor-pointer onclick=tes()">
     <i class="fa-solid fa-arrow-left-long text-dark-gray dark:text-very-light md:mr-4 text-xs"></i>
     <h3 class="font-semibold text-xs text-dark-gray dark:text-very-light">Back</h3>
   </div>
@@ -203,6 +211,7 @@ function detailsComponents(params) {
   
 </section>
   `;
+  footerComponent();
   // jika click back
   backDetails();
   // lanjut besok aja
@@ -214,7 +223,6 @@ renderStart();
 function elementClick() {
   const countryElements = document.querySelectorAll('.country');
   countryElements.forEach((country) => {
-    console.log(country);
     country.addEventListener('click', () => {
       console.log('click');
       const NAME_COUNTRY = country.children[1].children[0].children[0].textContent;
@@ -385,6 +393,7 @@ function backDetails() {
   }
   // karna aku belum menemukan caranya kita sebagai kembali nya kita refresh page aja ... wkk
   back.addEventListener('click', () => {
+    console.log('click');
     location.reload();
   });
 }
@@ -392,4 +401,23 @@ function backDetails() {
 // country data dalam region di click
 function clickFromRegion(NameCountry) {
   getByFilter('name', NameCountry, true);
+}
+
+// page not found
+function notFoundComponent() {
+  const MAIN_OUTPUT = document.querySelector('.countries');
+  const NOT_FOUND_ELEMENT = `
+  <div class="notFound mt-4 mx-4 mx-auto sm:w-3/4 md:w-3/5 lg:w-3/6">
+    <div class="notFound-images">
+      <img src="../src/not-found.png" alt="" />
+    </div>
+    <div class="text-center text-2xl font-extrabold text-gray-600 mt-2 tracking-wide dark:text-very-light">
+      <h3>countries not found</h3>
+      <h3>please try again</h3>
+    </div>
+  </div>
+  `;
+  MAIN_OUTPUT.innerHTML = NOT_FOUND_ELEMENT;
+  const BODY = document.querySelector('body');
+  BODY.classList.add('h-screen');
 }
