@@ -52,7 +52,13 @@ const search = document.querySelector('.search');
 // recomendasi data berdasarkan inputan per character
 input.addEventListener('keyup', () => {
   console.log(input.value);
-  getByFilter('name', input.value);
+  if (input.value === '') {
+    // jika  input user kosong jalankan function random countries lagi
+    renderStart();
+  } else {
+    getByFilter('name', input.value);
+    // checked();
+  }
 });
 // ini click search
 search.addEventListener('click', () => {
@@ -94,23 +100,13 @@ async function renderStart() {
 async function getByFilter(filter, input, isDetail = false) {
   try {
     const result = await getDataContries(`${filter}/${input}`);
-    console.log(result.length);
     if (isDetail === false) {
-      if (result.length == 1) {
-        const BODY = document.querySelector('body');
-        BODY.classList.add('h-screen');
-      } else {
-        const BODY = document.querySelector('body');
-        BODY.classList.remove('h-screen');
-      }
       render(result, outputCountries);
     } else {
       detailsComponents(result);
     }
   } catch (err) {
     notFoundComponent();
-    const BODY = document.querySelector('body');
-    BODY.classList.add('h-screen');
   }
 }
 // fungsi render keluar
@@ -146,7 +142,8 @@ function get_random(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
 
-// detail components
+// jika countries di click maka kita arahkan ke datails
+// detail components => dari inputan user atau dari input
 const main = document.querySelector('main');
 const body = document.querySelector('body');
 function detailsComponents(params) {
@@ -157,13 +154,33 @@ function detailsComponents(params) {
   const flags = params[0].flags.png;
   const subRegion = params[0].subregion;
   const checked = params[0].name.nativeName;
-  let nativeName;
+  const CURRENCIES = params[0].currencies;
+  const LANGUAGES = params[0].languages;
+  const BORDERS = params[0].borders;
+  console.log(LANGUAGES);
 
+  // pengecekan propty di dalam daTa => ada beberapa property yg beda beda
+  let nativeName;
   for (const key in checked) {
     if (Object.hasOwnProperty.call(checked, key)) {
       nativeName = checked[key].official;
     }
   }
+  let currencies;
+  for (const key in CURRENCIES) {
+    currencies = key;
+  }
+  let languages = [];
+  for (const key in LANGUAGES) {
+    languages.push(LANGUAGES[key]);
+  }
+  let borders = [];
+  for (const key in BORDERS) {
+    borders.push(BORDERS[key]);
+  }
+
+  console.log(borders);
+  // console.log(currencies);
 
   console.log(params);
   main.innerHTML = `
@@ -192,8 +209,8 @@ function detailsComponents(params) {
       </div>
     <div class="des-information2 mt-8 lg:mt-0 ">
       <h4 class="font-semibold text-xs mb-2 md:text-sm">Top Level Domain: <span class="font-light"></span></h4>
-      <h4 class="font-semibold text-xs mb-2 md:text-sm">Currencies: <span class="font-light">-</span></h4>
-      <h4 class="font-semibold text-xs mb-2 md:text-sm">Languages: <span class="font-light">-</span></h4>
+      <h4 class="font-semibold text-xs mb-2 md:text-sm">Currencies: <span class="font-light">${CURRENCIES[currencies].name}</span></h4>
+      <h4 class="font-semibold text-xs mb-2 md:text-sm">Languages: <span class="font-light">${languages}</span></h4>
     </div>
     </div>
   <div class="border-countries mt-8 lg:flex lg:items-center">
@@ -201,9 +218,9 @@ function detailsComponents(params) {
       <h3 class="text-sm font-bold tracking-wide md:text-md">Border Countries :</h3>
     </div>
     <div class="btn-countries flex justify-around mt-[8px] md:justify-between lg:mt-0 lg:ml-8">
-      <button class="py-[1px] px-[20px] bg-white text-xs rounded-sm shadow-md dark:bg-dark lg:mr-4 lg:py-1 lg:px-6">-</button>
-      <button class="py-[1px] px-[20px] bg-white text-xs rounded-sm shadow-md dark:bg-dark lg:mr-4 lg:py-1 lg:px-6">-</button>
-      <button class="py-[1px] px-[20px] bg-white text-xs rounded-sm shadow-md dark:bg-dark lg:mr-4 lg:py-1 lg:px-6">-</button>
+      <button class="py-[1px] px-[20px] bg-white text-xs rounded-sm shadow-md dark:bg-dark lg:mr-4 lg:py-1 lg:px-6">${borders[0] ?? '-'}</button>
+      <button class="py-[1px] px-[20px] bg-white text-xs rounded-sm shadow-md dark:bg-dark lg:mr-4 lg:py-1 lg:px-6">${borders[1] ?? '-'}</button>
+      <button class="py-[1px] px-[20px] bg-white text-xs rounded-sm shadow-md dark:bg-dark lg:mr-4 lg:py-1 lg:px-6">${borders[2] ?? '-'}</button>
     </div>
   </div>
 </div>
@@ -211,190 +228,23 @@ function detailsComponents(params) {
   
 </section>
   `;
-  footerComponent();
-  // jika click back
   backDetails();
-  // lanjut besok aja
 }
 
 renderStart();
 
-// fungsi jika country nya di click kita arahkan ke details component
+// jika countries di click maka kita arahkan ke datails
+// // detail components => dari random render countries nya
 function elementClick() {
   const countryElements = document.querySelectorAll('.country');
   countryElements.forEach((country) => {
-    country.addEventListener('click', () => {
+    country.addEventListener('click', async () => {
       console.log('click');
       const NAME_COUNTRY = country.children[1].children[0].children[0].textContent;
       console.log(NAME_COUNTRY);
-      getByFilter('name', NAME_COUNTRY, true);
+      await getByFilter('name', NAME_COUNTRY, true);
+      backDetails();
     });
-  });
-}
-// kita set semua sesuai default elements nya sesuai dengan di index ... bukan di reset
-function backDetails() {
-  const back = document.querySelector('.btn-details');
-  {
-    // back.addEventListener('click', () => {
-    //   // rencana nya ini template load nya atau ntar dibuat skeleton template
-    //   main.innerHTML = `
-    //   <section class="user-experience">
-    //   <div class="contain-input">
-    //     <div class="search">
-    //       <i class="fa-solid fa-magnifying-glass text-dark-gray"></i>
-    //     </div>
-    //     <div class="w-5/6 input">
-    //       <input class="w-full h-10 dark:bg-dark" type="text" />
-    //     </div>
-    //   </div>
-    //   <div class="dropdown">
-    //     <div class="select">
-    //       <h3 class="title-output">Filter by Region</h3>
-    //       <i id="btn-animate" class="btn fa-solid fa-angle-down cursor-pointer"></i>
-    //     </div>
-    //     <ul class="options">
-    //       <li>Africa</li>
-    //       <li>America</li>
-    //       <li>Asia</li>
-    //       <li>Europe</li>
-    //       <li>Oceania</li>
-    //     </ul>
-    //   </div>
-    // </section>
-    // <!-- start user-experience -->
-    // <!-- start country  -->
-    // <section class="countries">
-    //   <div class="country">
-    //     <div class="country-images">
-    //       <img src="https://flagcdn.com/br.svg" alt="indonesian" />
-    //     </div>
-    //     <div class="content px-6 py-4 bg-white dark:bg-dark">
-    //       <div class="country-title font-extrabold">
-    //         <h3>Germany</h3>
-    //       </div>
-    //       <div class="country-description mt-2 text-sm">
-    //         <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-    //         <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-    //         <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div class="country">
-    //     <div class="country-images">
-    //       <img src="https://flagcdn.com/br.svg" alt="indonesian" />
-    //     </div>
-    //     <div class="content px-6 py-4 bg-white dark:bg-dark">
-    //       <div class="country-title font-extrabold">
-    //         <h3>Germany</h3>
-    //       </div>
-    //       <div class="country-description mt-2 text-sm">
-    //         <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-    //         <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-    //         <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div class="country">
-    //     <div class="country-images">
-    //       <img src="https://flagcdn.com/br.svg" alt="indonesian" />
-    //     </div>
-    //     <div class="content px-6 py-4 bg-white dark:bg-dark">
-    //       <div class="country-title font-extrabold">
-    //         <h3>Germany</h3>
-    //       </div>
-    //       <div class="country-description mt-2 text-sm">
-    //         <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-    //         <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-    //         <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div class="country">
-    //     <div class="country-images">
-    //       <img src="https://flagcdn.com/br.svg" alt="indonesian" />
-    //     </div>
-    //     <div class="content px-6 py-4 bg-white dark:bg-dark">
-    //       <div class="country-title font-extrabold">
-    //         <h3>Germany</h3>
-    //       </div>
-    //       <div class="country-description mt-2 text-sm">
-    //         <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-    //         <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-    //         <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div class="country">
-    //     <div class="country-images">
-    //       <img src="https://flagcdn.com/br.svg" alt="indonesian" />
-    //     </div>
-    //     <div class="content px-6 py-4 bg-white dark:bg-dark">
-    //       <div class="country-title font-extrabold">
-    //         <h3>Germany</h3>
-    //       </div>
-    //       <div class="country-description mt-2 text-sm">
-    //         <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-    //         <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-    //         <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div class="country">
-    //     <div class="country-images">
-    //       <img src="https://flagcdn.com/br.svg" alt="indonesian" />
-    //     </div>
-    //     <div class="content px-6 py-4 bg-white dark:bg-dark">
-    //       <div class="country-title font-extrabold">
-    //         <h3>Germany</h3>
-    //       </div>
-    //       <div class="country-description mt-2 text-sm">
-    //         <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-    //         <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-    //         <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div class="country">
-    //     <div class="country-images">
-    //       <img src="https://flagcdn.com/br.svg" alt="indonesian" />
-    //     </div>
-    //     <div class="content px-6 py-4 bg-white dark:bg-dark">
-    //       <div class="country-title font-extrabold">
-    //         <h3>Germany</h3>
-    //       </div>
-    //       <div class="country-description mt-2 text-sm">
-    //         <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-    //         <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-    //         <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div class="country">
-    //     <div class="country-images">
-    //       <img src="https://flagcdn.com/br.svg" alt="indonesian" />
-    //     </div>
-    //     <div class="content px-6 py-4 bg-white dark:bg-dark">
-    //       <div class="country-title font-extrabold">
-    //         <h3>Germany</h3>
-    //       </div>
-    //       <div class="country-description mt-2 text-sm">
-    //         <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-    //         <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-    //         <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </section>
-    // <!-- end country  -->
-    // </main>
-    //   `;
-    //   renderStart();
-    // });}
-  }
-  // karna aku belum menemukan caranya kita sebagai kembali nya kita refresh page aja ... wkk
-  back.addEventListener('click', () => {
-    console.log('click');
-    location.reload();
   });
 }
 
@@ -402,12 +252,11 @@ function backDetails() {
 function clickFromRegion(NameCountry) {
   getByFilter('name', NameCountry, true);
 }
-
 // page not found
 function notFoundComponent() {
   const MAIN_OUTPUT = document.querySelector('.countries');
   const NOT_FOUND_ELEMENT = `
-  <div class="notFound mt-4 mx-4 mx-auto sm:w-3/4 md:w-3/5 lg:w-3/6">
+  <div class="notFound mt-4 mx-4  sm:w-3/4 md:w-3/5 md:mx-auto lg:w-3/6">
     <div class="notFound-images">
       <img src="../src/not-found.png" alt="" />
     </div>
@@ -418,6 +267,10 @@ function notFoundComponent() {
   </div>
   `;
   MAIN_OUTPUT.innerHTML = NOT_FOUND_ELEMENT;
-  const BODY = document.querySelector('body');
-  BODY.classList.add('h-screen');
+}
+function backDetails() {
+  const back = document.querySelector('.btn-details');
+  back.addEventListener('click', () => {
+    location.reload();
+  });
 }
