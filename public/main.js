@@ -3,18 +3,20 @@ const html = document.querySelector('html');
 const mode = document.querySelector('#mode');
 
 // mode theme
-let theme = true; // default dalam kondisi light
 mode.addEventListener('click', () => {
-  if (theme) {
-    html.classList.add('dark');
-    renderTheme('light', false);
-  } else {
+  if (localStorage.theme === 'dark') {
+    // pengecekan theme ? jika dia dark maka akan => light
     html.classList.remove('dark');
-    renderTheme('dark', true);
+    localStorage.theme = 'light';
+    renderTheme('light');
+  } else {
+    // pengecekan theme ? jika dia light maka akan => dark
+    html.classList.add('dark');
+    localStorage.theme = 'dark';
+    renderTheme('dark');
   }
 });
-function renderTheme(text, condition) {
-  theme = condition;
+function renderTheme(text) {
   mode.innerHTML = `
     <i class="fa-regular fa-moon -rotate-12"></i>
     <h4 class="text-sm font-semibold ml-2">${text} mode</h4>
@@ -231,8 +233,6 @@ function detailsComponents(params) {
   backDetails();
 }
 
-renderStart();
-
 // jika countries di click maka kita arahkan ke datails
 // // detail components => dari random render countries nya
 function elementClick() {
@@ -274,3 +274,6 @@ function backDetails() {
     location.reload();
   });
 }
+
+// run start setelah nunggu 2 detik
+setTimeout(renderStart, 2000);

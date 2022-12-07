@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="../fontawesome-free-6.2.1-web/css/all.min.css" />
     <link rel="stylesheet" href="output.css" />
     <title>countries api</title>
+    <script>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
   </head>
   <body class="relative">
     <!-- start header  -->
@@ -18,7 +26,6 @@
       </div>
     </header>
     <!----- end header  ----->
-
     <main>
       <!-- start user-experience -->
       <section class="user-experience">
@@ -44,140 +51,179 @@
           </ul>
         </div>
       </section>
-      <!-- start user-experience -->
-
+      <!-- end user-experience -->
       <!-- start country  -->
       <section class="countries">
         <div class="country">
-          <div class="country-images">
-            <img src="https://flagcdn.com/br.svg" alt="indonesian" />
+          <div class="country-images bg-slate-400 h-44 flex justify-center items-center animate-pulse">
+            <svg class="w-12 h-12 text-gray-200 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512">
+              <path
+                d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z"
+              />
+            </svg>
+            <!-- <img src="https://flagcdn.com/br.svg" alt="indonesian" /> -->
           </div>
           <div class="content px-6 py-4 bg-white dark:bg-dark">
-            <div class="country-title font-extrabold">
-              <h3>Germany</h3>
+            <div class="country-title font-extrabold bg-slate-400 rounded-full h-2 w-2/5 mb-4 mt-2 animate-pulse">
+              <h3></h3>
             </div>
             <div class="country-description mt-2 text-sm">
-              <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-              <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-              <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-4/5 animate-pulse"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
             </div>
           </div>
         </div>
         <div class="country">
-          <div class="country-images">
-            <img src="https://flagcdn.com/br.svg" alt="indonesian" />
+          <div class="country-images bg-slate-400 h-44 flex justify-center items-center animate-pulse">
+            <svg class="w-12 h-12 text-gray-200 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512">
+              <path
+                d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z"
+              />
+            </svg>
+            <!-- <img src="https://flagcdn.com/br.svg" alt="indonesian" /> -->
           </div>
           <div class="content px-6 py-4 bg-white dark:bg-dark">
-            <div class="country-title font-extrabold">
-              <h3>Germany</h3>
+            <div class="country-title font-extrabold bg-slate-400 rounded-full h-2 w-2/5 mb-4 mt-2 animate-pulse">
+              <h3></h3>
             </div>
             <div class="country-description mt-2 text-sm">
-              <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-              <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-              <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-4/5 animate-pulse"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
             </div>
           </div>
         </div>
         <div class="country">
-          <div class="country-images">
-            <img src="https://flagcdn.com/br.svg" alt="indonesian" />
+          <div class="country-images bg-slate-400 h-44 flex justify-center items-center animate-pulse">
+            <svg class="w-12 h-12 text-gray-200 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512">
+              <path
+                d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z"
+              />
+            </svg>
+            <!-- <img src="https://flagcdn.com/br.svg" alt="indonesian" /> -->
           </div>
           <div class="content px-6 py-4 bg-white dark:bg-dark">
-            <div class="country-title font-extrabold">
-              <h3>Germany</h3>
+            <div class="country-title font-extrabold bg-slate-400 rounded-full h-2 w-2/5 mb-4 mt-2 animate-pulse">
+              <h3></h3>
             </div>
             <div class="country-description mt-2 text-sm">
-              <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-              <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-              <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-4/5 animate-pulse"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
             </div>
           </div>
         </div>
         <div class="country">
-          <div class="country-images">
-            <img src="https://flagcdn.com/br.svg" alt="indonesian" />
+          <div class="country-images bg-slate-400 h-44 flex justify-center items-center animate-pulse">
+            <svg class="w-12 h-12 text-gray-200 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512">
+              <path
+                d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z"
+              />
+            </svg>
+            <!-- <img src="https://flagcdn.com/br.svg" alt="indonesian" /> -->
           </div>
           <div class="content px-6 py-4 bg-white dark:bg-dark">
-            <div class="country-title font-extrabold">
-              <h3>Germany</h3>
+            <div class="country-title font-extrabold bg-slate-400 rounded-full h-2 w-2/5 mb-4 mt-2 animate-pulse">
+              <h3></h3>
             </div>
             <div class="country-description mt-2 text-sm">
-              <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-              <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-              <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-4/5 animate-pulse"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
             </div>
           </div>
         </div>
         <div class="country">
-          <div class="country-images">
-            <img src="https://flagcdn.com/br.svg" alt="indonesian" />
+          <div class="country-images bg-slate-400 h-44 flex justify-center items-center animate-pulse">
+            <svg class="w-12 h-12 text-gray-200 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512">
+              <path
+                d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z"
+              />
+            </svg>
+            <!-- <img src="https://flagcdn.com/br.svg" alt="indonesian" /> -->
           </div>
           <div class="content px-6 py-4 bg-white dark:bg-dark">
-            <div class="country-title font-extrabold">
-              <h3>Germany</h3>
+            <div class="country-title font-extrabold bg-slate-400 rounded-full h-2 w-2/5 mb-4 mt-2 animate-pulse">
+              <h3></h3>
             </div>
             <div class="country-description mt-2 text-sm">
-              <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-              <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-              <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-4/5 animate-pulse"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
             </div>
           </div>
         </div>
         <div class="country">
-          <div class="country-images">
-            <img src="https://flagcdn.com/br.svg" alt="indonesian" />
+          <div class="country-images bg-slate-400 h-44 flex justify-center items-center animate-pulse">
+            <svg class="w-12 h-12 text-gray-200 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512">
+              <path
+                d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z"
+              />
+            </svg>
+            <!-- <img src="https://flagcdn.com/br.svg" alt="indonesian" /> -->
           </div>
           <div class="content px-6 py-4 bg-white dark:bg-dark">
-            <div class="country-title font-extrabold">
-              <h3>Germany</h3>
+            <div class="country-title font-extrabold bg-slate-400 rounded-full h-2 w-2/5 mb-4 mt-2 animate-pulse">
+              <h3></h3>
             </div>
             <div class="country-description mt-2 text-sm">
-              <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-              <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-              <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-4/5 animate-pulse"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
             </div>
           </div>
         </div>
         <div class="country">
-          <div class="country-images">
-            <img src="https://flagcdn.com/br.svg" alt="indonesian" />
+          <div class="country-images bg-slate-400 h-44 flex justify-center items-center animate-pulse">
+            <svg class="w-12 h-12 text-gray-200 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512">
+              <path
+                d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z"
+              />
+            </svg>
+            <!-- <img src="https://flagcdn.com/br.svg" alt="indonesian" /> -->
           </div>
           <div class="content px-6 py-4 bg-white dark:bg-dark">
-            <div class="country-title font-extrabold">
-              <h3>Germany</h3>
+            <div class="country-title font-extrabold bg-slate-400 rounded-full h-2 w-2/5 mb-4 mt-2 animate-pulse">
+              <h3></h3>
             </div>
             <div class="country-description mt-2 text-sm">
-              <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-              <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-              <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-4/5 animate-pulse"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
             </div>
           </div>
         </div>
         <div class="country">
-          <div class="country-images">
-            <img src="https://flagcdn.com/br.svg" alt="indonesian" />
+          <div class="country-images bg-slate-400 h-44 flex justify-center items-center animate-pulse">
+            <svg class="w-12 h-12 text-gray-200 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512">
+              <path
+                d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z"
+              />
+            </svg>
+            <!-- <img src="https://flagcdn.com/br.svg" alt="indonesian" /> -->
           </div>
           <div class="content px-6 py-4 bg-white dark:bg-dark">
-            <div class="country-title font-extrabold">
-              <h3>Germany</h3>
+            <div class="country-title font-extrabold bg-slate-400 rounded-full h-2 w-2/5 mb-4 mt-2 animate-pulse">
+              <h3></h3>
             </div>
             <div class="country-description mt-2 text-sm">
-              <h4 class="font-semibold">population: <span class="font-light">273.523.621</span></h4>
-              <h4 class="font-semibold">region: <span class="font-light">Asia</span></h4>
-              <h4 class="font-semibold">capital: <span class="font-light">Jakarta</span></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-4/5 animate-pulse"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
+              <h4 class="font-semibold bg-slate-400 rounded-full h-2 w-3/5 animate-pulse mt-2"></h4>
             </div>
           </div>
         </div>
       </section>
       <!-- end country  -->
     </main>
-    <footer class="absolute text-center h-20 -bottom-20 left-0 right-0 bg-white dark:bg-dark md:flex md:justify-between items-center md:px-8">
+    <footer class="absolute text-center h-20 -bottom-20 left-0 right-0 bg-white shadow-2xl dark:bg-dark md:flex md:justify-between items-center md:px-8">
       <div class="frontendMentor font-extrabold text-md text-gray-600 dark:text-white mt-2 md:mt-0 md:text-lg">
         <h3><a href="#">frontendMentor</a></h3>
       </div>
-      <div class="credits font-extrabold text-md text-gray-600 dark:text-white md:mt-0 lg:text-lg">
+      <div class="credits bg-white dark:bg-dark font-extrabold text-md text-gray-600 dark:text-white md:mt-0 lg:text-lg">
         <h3>credits by @ziss25</h3>
-        <div class="icons w-1/5 mx-auto flex justify-between mt-2 mb-2 sm:justify-evenly md:w-full md:mt-0">
+        <div class="icons w-1/5 mx-auto flex justify-between mt-2 sm:justify-evenly md:w-full md:mt-0">
           <a href="https://github.com/ziss25">
             <i class="fa-brands cursor-pointer fa-github hover:text-black"></i>
           </a>

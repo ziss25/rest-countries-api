@@ -76,7 +76,7 @@ main {
 }
 
 .country {
-  @apply mb-10 bg-white rounded-md overflow-hidden md:w-64 bg-white;
+  @apply mb-10 bg-white rounded-md overflow-hidden md:w-64 bg-white cursor-pointer;
 }
 
 .countries {
